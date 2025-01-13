@@ -1,0 +1,13 @@
+﻿@using Microsoft.AspNetCore.Components.Authorization
+@inject AuthenticationStateProvider AuthenticationStateProvider
+
+<CascadingAuthenticationState>
+    <AuthorizeView>
+        <Authorized>
+            Hello, @context.User.Identity?.Name!
+        </Authorized>
+        <NotAuthorized>
+            Hello, guest!
+        </NotAuthorized>
+    </AuthorizeView>
+</CascadingAuthenticationState>
