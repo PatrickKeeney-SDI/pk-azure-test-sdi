@@ -21,6 +21,9 @@ jobs:
         with:
           dotnet-version: '9.x'
       
+      - name: Build with dotnet
+        run: dotnet build PKAzureTest/PKAzureTest.sln --configuration Release
+
       - name: App Settings Variable Substitution
         uses: microsoft/variable-substitution@v1
         with:
@@ -29,9 +32,6 @@ jobs:
           AzureAd.ClientId: ${{ secrets.AZUREAPPSERVICE_CLIENTID_095298E9DB11443F9A0594404BF17690 }}
           AzureAd.TenantId: ${{ secrets.AZUREAPPSERVICE_TENANTID_C21C8042060141FC805CC55789DFF3DA }}
           AzureAd.ClientSecret: ${{ secrets.AZUREAPPSERVICE_CLIENT_SECRET }}
-
-      - name: Build with dotnet
-        run: dotnet build PKAzureTest/PKAzureTest.sln --configuration Release
 
       - name: dotnet publish
         run: dotnet publish PKAzureTest/PKAzureTest.sln -c Release -o "${{env.DOTNET_ROOT}}/myapp"
